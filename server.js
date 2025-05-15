@@ -6,7 +6,13 @@ const auth = require("json-server-auth");
 const db = require("./db.json");
 const router = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
-server.use(cors())
+server.use(cors({
+    origin: [
+        'http://localhost:5173', // 開發用
+        'https://changyuan-fresh.github.io' // 正式網址
+    ],
+    credentials: true,
+}))
 server.use(middlewares)
 server.db = router.db;
 server.use(auth);
