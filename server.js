@@ -7,11 +7,9 @@ const db = require("./db.json");
 const router = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
 server.use(cors({
-    origin: [
-        'http://localhost:5173', // 開發用
-        'https://changyuan-fresh.github.io' // 正式網址
-    ],
-    credentials: true,
+    origin: '*', // 本地測試可用，正式請指定網域
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }))
 server.use(middlewares)
 server.db = router.db;
